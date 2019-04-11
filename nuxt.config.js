@@ -1,8 +1,13 @@
-import pkg from './package'
+const pkg = require('./package')
 
 export default {
   mode: 'universal',
-
+  srcDir: 'app',
+  router: {
+    middleware: [
+      'auth-cookie'
+    ]
+  },
   /*
   ** Headers of the page
   */
@@ -27,7 +32,9 @@ export default {
   ** Global CSS
   */
   css: [
-    'element-ui/lib/theme-chalk/index.css'
+    'element-ui/lib/theme-chalk/reset.css',
+    'element-ui/lib/theme-chalk/index.css',
+    '~/assets/common.css'
   ],
 
   /*
@@ -41,14 +48,19 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    // Doc: https://github.com/nuxt-community/axios-module#usage
+    '@nuxtjs/axios'
   ],
-
+  axios: {
+    baseURL: 'https://nuxt-blog-service-95c3c.firebaseio.com/'
+    // See https://github.com/nuxt-community/axios-module#options
+  },
   /*
   ** Build configuration
   */
   build: {
     transpile: [/^element-ui/],
-    
+
     /*
     ** You can extend webpack config here
     */
