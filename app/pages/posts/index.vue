@@ -29,29 +29,25 @@
 </template>
 
 <script>
+import moment from '~/plugins/moment'
+import { mapGetters } from 'vuex'
+
 export default {
+  async asyncData({ store }) {
+    await store.dispatch('posts/fetchPosts')
+  },
   computed: {
     showPosts() {
-      return [
-        {
-          id: '001',
-          title: 'How',
-          body: 'Lorem',
-          created_at: '4/9',
-          user: {
-            id: 'potato4d',
-          }
-        },
-        {
-          id: '002',
-          title: 'How',
-          body: 'Lorem',
-          created_at: '4/10',
-          user: {
-            id: 'potato4d',
-          }
-        }
-      ]
+      return this.posts.map(post => {
+        post.created_at = moment(post.created_at).format('YYYY/MM/DD HH:mm:ss')
+        return post
+      })
+    },
+    ...mapGetters('posts', ['posts'])
+  },
+  methods: {
+    handleClick(post) {
+      this.$router.push(`/posts/${post.id}`)
     }
   }
 }
