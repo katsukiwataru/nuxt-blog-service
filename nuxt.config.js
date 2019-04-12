@@ -52,7 +52,7 @@ export default {
     '@nuxtjs/axios'
   ],
   axios: {
-    baseURL: 'https://nuxt-blog-service-95c3c.firebaseio.com/'
+    baseURL: 'https://nuxt-blog-service-fbb39.firebaseio.com'
     // See https://github.com/nuxt-community/axios-module#options
   },
   /*
