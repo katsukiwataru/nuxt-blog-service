@@ -33,9 +33,6 @@ import moment from '~/plugins/moment'
 import { mapGetters } from 'vuex'
 
 export default {
-  async asyncData({ store }) {
-    await store.dispatch('posts/fetchPosts')
-  },
   computed: {
     showPosts() {
       return this.posts.map(post => {
